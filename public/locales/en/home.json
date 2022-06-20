@@ -1,0 +1,12 @@
+{
+  "auth": {
+    "signIn": "SignIn",
+    "signOut": "SignOut",
+    "signUp": "SignUp",
+    "notAuthMessage": "You are not auth"
+  },
+  "home": {
+    "meta:title": "Home",
+    "title": "Home"
+  }
+}

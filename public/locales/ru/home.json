@@ -1,0 +1,12 @@
+{
+  "auth": {
+    "signIn": "Войти",
+    "signOut": "Выйти",
+    "signUp": "Регистрация",
+    "notAuthMessage": "Вы не авторизованы"
+  },
+  "home": {
+    "meta:title": "Главная",
+    "title": "Главная"
+  }
+}
