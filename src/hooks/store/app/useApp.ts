@@ -1,4 +1,4 @@
-import ActionCreatorsApp from '#/store/app.slice';
+import ActionCreatorsApp from '#/store/slices/app.slice';
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { useTypesSelector } from '../useTypesSelector';

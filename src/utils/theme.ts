@@ -15,58 +15,6 @@ export const pxToRem = (pxValue: number, baseFontSize: number): string =>
   `${pxValue / baseFontSize || 16}rem`;
 
 const palette = {
-  common: {
-    black: '#000',
-    white: '#fff'
-  },
-  primary: {
-    main: '#1976d2',
-    light: '#42a5f5',
-    dark: '#1565c0',
-    contrastText: '#fff'
-  },
-  secondary: {
-    main: '#9c27b0',
-    light: '#ba68c8',
-    dark: '#7b1fa2',
-    contrastText: '#fff'
-  },
-  success: {
-    main: '#2e7d32',
-    light: '#4caf50',
-    dark: '#1b5e20',
-    contrastText: '#fff'
-  },
-  warning: {
-    main: '#ed6c02',
-    light: '#ff9800',
-    dark: '#e65100',
-    contrastText: '#fff'
-  },
-  error: {
-    main: '#d32f2f',
-    light: '#ef5350',
-    dark: '#c62828',
-    contrastText: '#fff'
-  },
-  info: {
-    main: '#0288d1',
-    light: '#03a9f4',
-    dark: '#01579b',
-    contrastText: '#fff'
-  },
-  grey: {
-    50: '#fcfcfc',
-    100: '#ebebeb',
-    200: '#cccccc',
-    300: '#a0a0a0',
-    400: '#8e8e8e',
-    500: '#666666',
-    600: '#505050',
-    700: '#404040',
-    800: '#303030',
-    900: '#212121'
-  },
   color: {
     text: '#262728',
     subText: '#535353',
@@ -78,16 +26,10 @@ const palette = {
     mainContent: '#e4e4e4',
     modal: '#333',
     modalContent: '#444',
-    highlight: '#6db6ff'
+    highlight: '#6db6ff',
+    buttonItem: '#656565'
   },
-  text: {
-    primaryLight: '#cccccc',
-    primary: '#666666',
-    primaryDark: '#212121',
-    secondary: 'rgba(0, 0, 0, 0.6)',
-    disabled: 'rgba(0, 0, 0, 0.87)'
-  },
-  divider: '#cccccc'
+  divider: '#8e8e8e'
 };
 
 const paletteDark = {
@@ -96,7 +38,8 @@ const paletteDark = {
     mainContent: '#121314',
     modal: '#333',
     modalContent: '#444',
-    highlight: '#f65341'
+    highlight: '#f65341',
+    buttonItem: '#656565'
   },
   color: {
     text: '#e4e4e4',
@@ -112,7 +55,8 @@ const paletteBlue = {
     mainContent: '#161b22',
     modal: '#1b222c',
     modalContent: '#141d27',
-    highlight: '#6db6ff'
+    highlight: '#6db6ff',
+    buttonItem: '#656565'
   },
   color: {
     text: '#e4e4e4',

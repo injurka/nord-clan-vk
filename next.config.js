@@ -37,6 +37,9 @@ const nextConfig = {
   devIndicators: {
     autoPrerender: false
   },
+  images: {
+    domains: ['*']
+  },
   pwa: {
     disable: prod ? false : true,
     dest: 'public',

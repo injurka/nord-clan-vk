@@ -1,35 +1,38 @@
 import React from 'react';
 import { NextSeo } from 'next-seo';
-// import useTheme from '#/hooks/useTheme';
-import MainLayout from '#/layouts/Main.layout';
-import type { GetServerSideProps } from 'next/types';
+import type { GetServerSideProps, NextPage } from 'next/types';
 import { wrapper } from '#/store/store';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { api } from '#/utils/api';
+import { loadDocs } from '#/store/slices/docs.slice';
+import { HomeHeaderStyled, HomeStyled } from '#/styles/pages/home.style';
+
+import { DocsListControlStyle } from '#/styles/components/docs/docs.style';
+import DocsList from '#/components/docs/docs-list.component';
 
 // Home page
 //* ------------------------------------------------------------------------------------------ *//
-const Home = () => {
-  // const { themeContext, setThemeContext } = useTheme();
-
+const Home: NextPage = () => {
   return (
-    <div>
+    <>
       <NextSeo title="Home" description="Home page" />
-      <div>
-        <div>Index</div>
-        {/* 
-        <h1>{themeContext}</h1>
-        <button type="button" onClick={() => setThemeContext('blue')}>
-          BLUE
-        </button>
-        <button type="button" onClick={() => setThemeContext('light')}>
-          LIGHT
-        </button>
-        <button type="button" onClick={() => setThemeContext('dark')}>
-          DARK
-        </button> 
-        */}
-      </div>
-    </div>
+      <HomeStyled>
+        <HomeHeaderStyled>
+          <h1>Documents</h1>
+          <hr />
+          <DocsListControlStyle>
+            {/* <div> 
+             <div>1</div>
+              <div>2</div>
+            </div>
+            <div>
+              <div>фильтры</div>
+            </div> */}
+          </DocsListControlStyle>
+        </HomeHeaderStyled>
+        <DocsList />
+      </HomeStyled>
+    </>
   );
 };
 
@@ -37,7 +40,10 @@ const Home = () => {
 //* ------------------------------------------------------------------------------------------ *//
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
   (store) =>
-    async ({ locale }) => {
+    async ({ locale, res }) => {
+      const data = await api(res).docs.get({});
+      if (data?.items) store.dispatch(loadDocs(data.items));
+
       return {
         props: {
           ...(await serverSideTranslations(locale || '', ['common', 'home']))
@@ -45,9 +51,5 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
       };
     }
 );
-
-Home.getLayout = function getLayout(page: React.ReactElement) {
-  return <MainLayout>{page}</MainLayout>;
-};
 
 export default Home;

@@ -7,6 +7,12 @@ import type { NextPage } from 'next';
 import React, { useState } from 'react';
 import { appWithTranslation } from 'next-i18next';
 import { DefaultSeo } from 'next-seo';
+import { getCookie } from 'cookies-next';
+
+//* dayjs
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import duration from 'dayjs/plugin/duration';
 
 //* react-query
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
@@ -14,13 +20,13 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 
 //* redux-toolkit
 import { wrapper } from '#/store/store';
+import { switchTheme } from '#/store/slices/app.slice';
+import { authUser } from '#/store/slices/user.slice';
 
-//* Layouts wrappers
+//* layouts wrappers
 import type { ThemeVarious } from '#/contexts/theme';
 import ThemeProvider from '#/contexts/theme';
-import { getCookie } from 'cookies-next';
-import { switchTheme } from '#/store/app.slice';
-import { authUser } from '#/store/user.slice';
+import MainLayout from '#/layouts/Main.layout';
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -33,6 +39,11 @@ type AppPropsWithLayout = AppProps & {
 // App setup
 //* ------------------------------------------------------------------------------------------ *//
 const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
+  dayjs.extend(relativeTime);
+  dayjs.extend(duration);
+  dayjs.locale('ru');
+  dayjs.locale('en');
+
   const [queryClient] = useState(
     () =>
       new QueryClient({
@@ -53,7 +64,9 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
         <ReactQueryDevtools initialIsOpen />
         <Hydrate state={pageProps.dehydratedState}>
           <ThemeProvider>
-            <Component {...pageProps} />
+            <MainLayout>
+              <Component {...pageProps} />
+            </MainLayout>
           </ThemeProvider>
         </Hydrate>
       </QueryClientProvider>
@@ -65,13 +78,12 @@ MyApp.getInitialProps = wrapper.getInitialAppProps((store) => async ({ ctx, Comp
   const currentTheme = getCookie('__THEME__', {
     req: ctx.req
   });
+  store.dispatch(switchTheme((currentTheme as ThemeVarious) || 'light'));
 
   const accessToken = getCookie('__ACCESS_TOKEN__', {
     req: ctx.req
   });
-
-  store.dispatch(switchTheme(currentTheme as ThemeVarious));
-  store.dispatch(authUser(accessToken as string));
+  if (accessToken) store.dispatch(authUser(accessToken as string));
 
   return {
     pageProps: {

@@ -1,14 +1,15 @@
 @use 'sass:color';
 
-$font-family-sans-serif: -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, 'Helvetica Neue',
-  arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-  'Noto Color Emoji' !default;
+$font-family-sans-serif: 'Rubik', -apple-system, blinkmacsystemfont, 'Segoe UI', roboto,
+  'Helvetica Neue', arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+  'Segoe UI Symbol', 'Noto Color Emoji' !default;
 $font-family-monospace: sfmono-regular, menlo, monaco, consolas, 'Liberation Mono', 'Courier New',
   monospace !default;
 $font-family-base: $font-family-sans-serif !default;
 $font-size-base: 1rem !default;
 $font-size-lg: $font-size-base * 1.25 !default;
-$font-size-sm: $font-size-base * 0.875 !default;
+$font-size-md: $font-size-base * 0.875 !default;
+$font-size-sm: $font-size-base * 0.7 !default;
 $font-size-root: null !default;
 $font-weight-lighter: lighter !default;
 $font-weight-light: 300 !default;
@@ -35,9 +36,6 @@ $color-background-content: #e4e4e4;
 $color-background-modal: #333;
 $color-button-bg: linear-gradient(290.47deg, #3797fa 11.33%, #45c9ff 83.66%);
 $color-highlight: #6db6ff;
-$color-initial: #ffbec2;
-$color-final: #85e3ff;
-$color-pinyin-hover: #9cf;
 
 //* Dark theme
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -47,9 +45,6 @@ $color-background-content-dark: #161718;
 $color-background-modal-dark: rgb(22 22 22);
 $color-button-bg-dark: linear-gradient(290.47deg, #ff8856 11.33%, #ffaa86 83.66%);
 $color-highlight-dark: #ff8856;
-$color-initial-dark: #915f62;
-$color-final-dark: #506e77;
-$color-pinyin-hover-dark: #7ca4cd;
 
 //* Blue theme
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -59,9 +54,6 @@ $color-background-content-blue: #161b22;
 $color-background-modal-blue: #1b222c;
 $color-button-bg-blue: linear-gradient(290.47deg, #3797fa 11.33%, #45c9ff 83.66%);
 $color-highlight-blue: #6db6ff;
-$color-initial-blue: #ffbec2;
-$color-final-blue: #85e3ff;
-$color-pinyin-hover-blue: #9cf;
 
 %ellipsis {
   overflow: hidden;

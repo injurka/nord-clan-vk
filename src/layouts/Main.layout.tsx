@@ -4,6 +4,7 @@ import React from 'react';
 import { MainStyled } from '#/styles/layouts/main.style';
 
 //* Component
+import Header from '#/components/ui/header.component';
 
 //* Custom hooks
 
@@ -16,7 +17,7 @@ interface PageProps {
 function MainLayout({ children }: PageProps) {
   return (
     <>
-      {/* <Header /> */}
+      <Header />
       <MainStyled>{children}</MainStyled>
     </>
   );

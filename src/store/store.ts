@@ -2,17 +2,20 @@ import type { ThunkAction, Action, AnyAction } from '@reduxjs/toolkit';
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { createWrapper, HYDRATE } from 'next-redux-wrapper';
 
-import type { AppState } from './app.slice';
-import type { UserState } from './user.slice';
+import type { AppState } from './slices/app.slice';
+import type { UserState } from './slices/user.slice';
+import type { DocsState } from './slices/docs.slice';
 
-import appSlice from './app.slice';
-import userSlice from './user.slice';
+import appSlice from './slices/app.slice';
+import userSlice from './slices/user.slice';
+import docsSlice from './slices/docs.slice';
 
 const devMode = process.env.NODE_ENV !== 'production';
 
 interface IState {
   app: AppState;
   user: UserState;
+  docs: DocsState;
 }
 
 const rootReducer = (state: IState | undefined, action: AnyAction) => {
@@ -24,7 +27,8 @@ const rootReducer = (state: IState | undefined, action: AnyAction) => {
   }
   return combineReducers({
     [appSlice.name]: appSlice.reducer,
-    [userSlice.name]: userSlice.reducer
+    [userSlice.name]: userSlice.reducer,
+    [docsSlice.name]: docsSlice.reducer
   })(state, action);
 };
 
