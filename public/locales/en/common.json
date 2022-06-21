@@ -1,8 +1,9 @@
 {
   "header": {
-    "menu": {
-      "theme": "Theme",
-      "language": "Language"
+    "theme": "Theme",
+    "language": "Language",
+    "tabs": {
+      "docs": "Documents"
     }
   }
 }

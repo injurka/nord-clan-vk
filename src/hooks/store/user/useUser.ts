@@ -7,8 +7,8 @@ import { useTypesSelector } from '../useTypesSelector';
 //* ------------------------------------------------------------------------------------------ *//
 export const useUser = () => {
   const dispatch = useDispatch();
-  const { reset, authUser } = bindActionCreators(ActionCreatorsApp.actions, dispatch);
+  const { reset, auth, logout } = bindActionCreators(ActionCreatorsApp.actions, dispatch);
   const { accessToken, isAuth } = useTypesSelector((state) => state.user);
 
-  return { reset, authUser, accessToken, isAuth };
+  return { reset, auth, logout, accessToken, isAuth };
 };

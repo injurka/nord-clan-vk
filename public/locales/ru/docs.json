@@ -1,0 +1,11 @@
+{
+  "docs": {
+    "meta:title": "Документы",
+    "title": "Мои документы",
+    "info": {
+      "fileType": "Тип файла",
+      "fileSize": "Размер файла",
+      "fileDateAdded": "Добавлено"
+    }
+  }
+}

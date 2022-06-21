@@ -1,8 +1,9 @@
 {
   "header": {
-    "menu": {
-      "theme": "Тема",
-      "language": "Язык"
+    "theme": "Тема",
+    "language": "Язык",
+    "tabs": {
+      "docs": "Документы"
     }
   }
 }

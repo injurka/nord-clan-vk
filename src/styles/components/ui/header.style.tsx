@@ -64,14 +64,24 @@ export const HeaderUlStyled = styled.ul`
     width: 30px;
     height: 30px;
 
-    svg {
+    > svg {
       fill: var(--color-header-icon);
       width: 24px;
       height: 24px;
     }
 
+    > a {
+      text-decoration: none;
+      color: var(--color-header);
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
     &:first-child {
       margin-right: auto;
+      width: 100%;
+      justify-content: flex-start;
+
       @include mobile {
         margin: 0;
       }

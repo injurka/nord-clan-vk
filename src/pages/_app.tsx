@@ -12,7 +12,8 @@ import { getCookie } from 'cookies-next';
 //* dayjs
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import duration from 'dayjs/plugin/duration';
+import 'dayjs/locale/ru';
+import 'dayjs/locale/en';
 
 //* react-query
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
@@ -21,7 +22,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 //* redux-toolkit
 import { wrapper } from '#/store/store';
 import { switchTheme } from '#/store/slices/app.slice';
-import { authUser } from '#/store/slices/user.slice';
+import { auth } from '#/store/slices/user.slice';
 
 //* layouts wrappers
 import type { ThemeVarious } from '#/contexts/theme';
@@ -40,9 +41,6 @@ type AppPropsWithLayout = AppProps & {
 //* ------------------------------------------------------------------------------------------ *//
 const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
   dayjs.extend(relativeTime);
-  dayjs.extend(duration);
-  dayjs.locale('ru');
-  dayjs.locale('en');
 
   const [queryClient] = useState(
     () =>
@@ -83,7 +81,7 @@ MyApp.getInitialProps = wrapper.getInitialAppProps((store) => async ({ ctx, Comp
   const accessToken = getCookie('__ACCESS_TOKEN__', {
     req: ctx.req
   });
-  if (accessToken) store.dispatch(authUser(accessToken as string));
+  if (accessToken) store.dispatch(auth(accessToken as string));
 
   return {
     pageProps: {

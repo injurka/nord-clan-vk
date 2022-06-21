@@ -1,28 +1,38 @@
 import React from 'react';
-import { NextSeo } from 'next-seo';
+
+//* next & redux
 import type { GetServerSideProps, NextPage } from 'next/types';
+import { NextSeo } from 'next-seo';
 import { wrapper } from '#/store/store';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { api } from '#/utils/api';
 import { loadDocs } from '#/store/slices/docs.slice';
-import { HomeHeaderStyled, HomeStyled } from '#/styles/pages/home.style';
 
-import { DocsListControlStyle } from '#/styles/components/docs/docs.style';
+//* i18n
+import { useTranslation } from 'next-i18next';
+import { COMMON_TNS, DOCUMENTS_TNS } from '#/utils/i18n/consts';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+
+//* styles & components
 import DocsList from '#/components/docs/docs-list.component';
+import { DocsListControlStyle } from '#/styles/components/docs/docs.style';
+import { HomeHeaderStyled, HomeStyled } from '#/styles/pages/home.style';
 
 // Home page
 //* ------------------------------------------------------------------------------------------ *//
 const Home: NextPage = () => {
+  const { t } = useTranslation([DOCUMENTS_TNS], { keyPrefix: 'docs' });
+
   return (
     <>
-      <NextSeo title="Home" description="Home page" />
+      <NextSeo title={t('meta:title')} description="Home page" />
+
       <HomeStyled>
         <HomeHeaderStyled>
-          <h1>Documents</h1>
+          <h1>{t('title')}</h1>
           <hr />
           <DocsListControlStyle>
-            {/* <div> 
-             <div>1</div>
+            {/* <div>
+              <div>1</div>
               <div>2</div>
             </div>
             <div>
@@ -41,12 +51,24 @@ const Home: NextPage = () => {
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
   (store) =>
     async ({ locale, res }) => {
+      // ? If user not auth then redirect into auth page
+      // if (!store.getState().user.isAuth) {
+      //   return {
+      //     props: {},
+      //     redirect: {
+      //       destination: '/auth',
+      //       permanent: false
+      //     }
+      //   };
+      // }
+
+      // ? Fetch documents data
       const data = await api(res).docs.get({});
       if (data?.items) store.dispatch(loadDocs(data.items));
 
       return {
         props: {
-          ...(await serverSideTranslations(locale || '', ['common', 'home']))
+          ...(await serverSideTranslations(locale || 'en', [COMMON_TNS, DOCUMENTS_TNS]))
         }
       };
     }
