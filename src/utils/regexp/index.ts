@@ -11,3 +11,5 @@ export const matchIsMobile = (navigator: string) => {
   }
   return false;
 };
+
+export const vkAccessToken = /#access_token=(.*?)&/;

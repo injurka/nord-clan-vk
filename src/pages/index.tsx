@@ -24,8 +24,7 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <NextSeo title={t('meta:title')} description="Home page" />
-
+      <NextSeo title={t('metaTitle')} description={t('metaTitle')} />
       <HomeStyled>
         <HomeHeaderStyled>
           <h1>{t('title')}</h1>
@@ -52,15 +51,15 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
   (store) =>
     async ({ locale, res }) => {
       // ? If user not auth then redirect into auth page
-      // if (!store.getState().user.isAuth) {
-      //   return {
-      //     props: {},
-      //     redirect: {
-      //       destination: '/auth',
-      //       permanent: false
-      //     }
-      //   };
-      // }
+      if (!store.getState().user.isAuth) {
+        return {
+          props: {},
+          redirect: {
+            destination: '/auth',
+            permanent: false
+          }
+        };
+      }
 
       // ? Fetch documents data
       const data = await api(res).docs.get({});

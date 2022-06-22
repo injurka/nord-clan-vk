@@ -32,7 +32,8 @@ const nextConfig = {
   },
   excludeFile: (str) => /\*.{spec,test}.js/.test(str),
   env: {
-    NEXT_SITE_URL: process.env.NEXT_SITE_URL || 'https://localhost'
+    NEXT_SITE_URL: process.env.NEXT_SITE_URL || 'https://localhost',
+    VK_AUTH_URL: process.env.VK_AUTH_URL || ''
   },
   devIndicators: {
     autoPrerender: false

@@ -9,7 +9,8 @@ interface GetPaylod {
 }
 
 interface DeletePaylod {
-  id: number;
+  owner_id: number;
+  doc_id: number;
 }
 
 interface DocsResponse {
@@ -28,7 +29,7 @@ export const DocsApi = (instance: AxiosInstance) => ({
   },
 
   async delete(payload: DeletePaylod) {
-    const { data } = await instance.delete<DocsResponse>('/docs.delete', {
+    const { data } = await instance.get<DocsResponse>('/docs.delete', {
       params: { ...payload }
     });
 

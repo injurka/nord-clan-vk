@@ -75,6 +75,12 @@ export const HeaderUlStyled = styled.ul`
       color: var(--color-header);
       font-size: 1rem;
       font-weight: 500;
+
+      &:hover {
+        color: var(--color-header-icon);
+        transition: all 0.2s ease-in;
+      }
+      transition: all 0.2s ease-out;
     }
 
     &:first-child {

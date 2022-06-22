@@ -1,6 +1,6 @@
 {
   "docs": {
-    "meta:title": "Документы",
+    "metaTitle": "Документы",
     "title": "Мои документы",
     "info": {
       "fileType": "Тип файла",
