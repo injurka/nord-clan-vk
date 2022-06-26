@@ -63,7 +63,7 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
 
       // ? Fetch documents data
       const data = await api(res).docs.get({});
-      if (data?.items) store.dispatch(loadDocs(data.items));
+      if (data) store.dispatch(loadDocs(data));
 
       return {
         props: {

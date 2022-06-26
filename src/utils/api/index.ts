@@ -9,7 +9,7 @@ interface ApiReturnType {
 
 export const api = (cookies?: OptionsType | undefined) => {
   const instance = axios.create({
-    baseURL: 'https://api.vk.com/method/',
+    baseURL: process.env.NEXT_API_URL,
     params: {
       v: '5.131',
       access_token: getCookie('__ACCESS_TOKEN__', cookies)

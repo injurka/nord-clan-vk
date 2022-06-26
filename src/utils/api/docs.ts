@@ -14,25 +14,23 @@ interface DeletePaylod {
 }
 
 interface DocsResponse {
-  response: {
-    count: number;
-    items: DocsItem[];
-  };
+  count: number;
+  items: DocsItem[];
 }
 
 ///                                                                                 //
 export const DocsApi = (instance: AxiosInstance) => ({
   async get(payload: GetPaylod) {
-    const { data } = await instance.get<DocsResponse>('/docs.get', { params: { ...payload } });
+    const { data } = await instance.get<DocsResponse>('/get-docs', { params: { ...payload } });
 
-    return data.response;
+    return data.items;
   },
 
   async delete(payload: DeletePaylod) {
-    const { data } = await instance.get<DocsResponse>('/docs.delete', {
+    const { data } = await instance.get<DocsResponse>('/delete-docs', {
       params: { ...payload }
     });
 
-    return data.response;
+    return data.items;
   }
 });

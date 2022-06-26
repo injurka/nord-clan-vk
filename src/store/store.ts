@@ -50,4 +50,4 @@ export type RootThunk<ReturnType = void> = ThunkAction<
   Action<string>
 >;
 
-export const wrapper = createWrapper<RootStore>(makeStore, { debug: false });
+export const wrapper = createWrapper<RootStore>(makeStore, { debug: devMode });

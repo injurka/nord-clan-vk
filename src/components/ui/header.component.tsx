@@ -36,13 +36,12 @@ const themeIcon = new Map<ThemeVarious, JSX.Element>([
 //* ------------------------------------------------------------------------------------------ *//
 const Header: FC = () => {
   const router = useRouter();
-  const { isAuth, logout } = useUser();
+  const { isAuth } = useUser();
   const { themeContext, setThemeContext } = useTheme();
 
   const { t, i18n } = useTranslation([COMMON_TNS], { keyPrefix: 'header' });
 
   const handleClickAuth = () => {
-    if (isAuth) logout();
     router.push('/auth');
   };
 
