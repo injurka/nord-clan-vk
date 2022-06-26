@@ -1,6 +1,6 @@
 import type { ThunkAction, Action, AnyAction } from '@reduxjs/toolkit';
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import { createWrapper, HYDRATE } from 'next-redux-wrapper';
+import { createWrapper } from 'next-redux-wrapper';
 
 import type { AppState } from './slices/app.slice';
 import type { UserState } from './slices/user.slice';
@@ -19,12 +19,12 @@ interface IState {
 }
 
 const rootReducer = (state: IState | undefined, action: AnyAction) => {
-  if (action.type === HYDRATE) {
-    return {
-      ...state,
-      ...action.payload
-    };
-  }
+  // if (action.type === HYDRATE) {
+  //   return {
+  //     ...state,
+  //     ...action.payload
+  //   };
+  // }
   return combineReducers({
     [appSlice.name]: appSlice.reducer,
     [userSlice.name]: userSlice.reducer,
